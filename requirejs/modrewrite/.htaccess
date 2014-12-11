@@ -1,0 +1,50 @@
+###
+#
+#
+# ------------------------------------------------------------ #
+#
+# WINDOWS SERVERS LIVE SITE MOD REWRITE
+# 
+# ------------------------------------------------------------ #
+# 
+# Apply the rules below to the entire website for clean URLs.
+#
+# ------------------------------------------------------------ #
+#
+#
+#
+
+
+# ============================================================ #
+# SWITCH ON THE REWRITE MODE.
+# ============================================================ #
+
+RewriteEngine on
+
+# Live server for production.
+#RewriteBase /
+
+# Localhost for developer.
+#RewriteBase /evastudio_2014/dev/
+
+
+# ============================================================ #
+# RULES: WEBSITE FRONT ALL PAGES. 
+# ============================================================ #
+
+#RewriteRule ^/?$  index.php?url=home [L,QSA]
+RewriteRule ^([a-zA-Z0-9\-]+)/?$  index.php?url=$1 [L,QSA]
+RewriteRule ^([a-zA-Z0-9\-]+)/([a-zA-Z0-9\-]+)/?$  index.php?url=$2 [L,QSA]
+RewriteRule ^([a-zA-Z0-9\-]+)/([0-9\-]+)/([a-zA-Z0-9\-]+)/?$ index.php?url=$1&needle_id=$2&title=$3 [L,QSA]
+
+
+# ============================================================ #
+# RULES: 404 ERROR.
+# ============================================================ #
+
+#ErrorDocument 404 http://www.gingermonkeydesign.com/404error
+ErrorDocument 404 /index.php?url=404error
+
+#
+#
+#
