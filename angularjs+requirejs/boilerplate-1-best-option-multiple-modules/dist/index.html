@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script data-main="scripts/main.js" src="scripts/vendors/requirejs/require.js"></script>
+    </head>
+
+    <body>
+        <!--
+        Note that you are automatic (ng-app) bootstrapping on this module.
+        Then do not bootsrap it again in bootstrap.js.
+        If you are going to bootstrap both modules in bootstrap.js, then remove ng-app from their div.
+        -->
+        <div id="App1" ng-app="shoppingCart" ng-controller="ShoppingCartController">
+            <h1>First Module: Your order</h1>
+            <div ng-repeat="item in items">
+                <span>{{item.product_name}}</span>
+                <span>{{item.price | currency}}</span>
+                <button ng-click="remove($index);">Remove</button>
+            </div>
+        </div>
+        
+        <!--
+        Note that you are manual (angular.bootstrap) bootstrapping on this module in bootstrap.js
+        -->
+        <div id="App2" ng-app="namesList" ng-controller="NamesController">
+            <h1>Second Module: List of Names</h1>
+            <div ng-repeat="_name in names">
+                <p>{{_name.username}}</p>
+            </div>
+        </div>
+        
+        <div id="App3" ng-app="helloWorld" ng-controller="HelloWorldController">
+            <h1>Third Module</h1>
+            {{message}}
+        </div>
+    </body>
+</html>

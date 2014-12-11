@@ -1,0 +1,9 @@
+{
+  "name": "boilerplate",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "latest",
+    "requirejs-domready": "latest",
+    "requirejs": "latest"
+  }
+}
