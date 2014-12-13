@@ -1,0 +1,1 @@
+reference: https://egghead.io/lessons/angularjs-application-wiring-jquery-vs-angularjs
