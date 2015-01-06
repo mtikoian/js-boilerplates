@@ -1,4 +1,4 @@
-requirejs.config({
+require.config({
     //By default load any module IDs from js/lib
     baseUrl: 'js',
     //except, if the module ID starts with "app",
@@ -21,7 +21,7 @@ requirejs.config({
 });
 
 // Start the main app logic.
-require(['jquery','app'], function   ($,app) {
+require(['app'], function   (app) {
     //jQuery, canvas and the app/sub module are all
     //loaded and can be used here now.
     console.log('this is main.js in js/');
