@@ -8,7 +8,10 @@ require.config({
     //the paths config could be for a directory.
     paths: {
         app: 'app/app',
-        jquery: 'lib/jquery'
+        jquery: 'lib/jquery',
+        dep0: 'app/dep-0',
+        dep1: 'app/dep-1',
+        dep2: 'app/dep-2'
     },
     shim: {
         app: {
@@ -16,6 +19,18 @@ require.config({
         },
         jquery: {
             exports: '$'
+        },
+        dep0: {
+            deps: ['jquery'],
+            exports: 'dep0'
+        },
+        dep1: {
+            deps: ['jquery'],
+            exports: 'dep1'
+        },
+        dep2: {
+            deps: ['jquery'],
+            exports: 'dep2'
         }
      }
 });
