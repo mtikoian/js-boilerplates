@@ -12,7 +12,11 @@ require.config({
         dep0: 'app/dep-0',
         dep1: 'app/dep-1',
         dep2: 'app/dep-2',
-        plugin1: 'app/plugin-1'
+        plugin1: 'app/plugin-1',
+        plugin2: 'app/plugin-2',
+        plugin3: 'app/plugin-3',
+        plugin4: 'app/plugin-4',
+        plugin5: 'app/plugin-5'
     },
     shim: {
         app: {

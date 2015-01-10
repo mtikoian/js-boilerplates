@@ -18,7 +18,7 @@
           var e = $(this);
           // write logic here
         });
-      };
+    };
 });
 
 /* 

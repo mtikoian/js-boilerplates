@@ -2,22 +2,41 @@
 define([
     'jquery',
     'plugin1',
-    //'dep0',
-    //'dep1'
-],function   ($, plugin1, dep0, dep1) {
-    //jQuery, canvas and the app/sub module are all
-    //loaded and can be used here now.
+    'plugin2',
+    'plugin3',
+    'plugin4',
+    'plugin5',
+    'dep0',
+    'dep1'
+],function   ($, plugin1, plugin2, plugin3, plugin4, plugin5, dep0, dep1) {
     
-    console.log("overriding default options: ");
-    $.fn.plugin1.defaults.param1 = 'hello';
-    $.fn.plugin1.defaults.param3 = 'world';
-   
-    //console.log(plugin1(document));
-    plugin1(".element").someMethod({
-        param1:       'something',
-        param2:       'anything'
+    console.log("plugin5: ");
+    console.log(plugin5);
+    var plugin =  plugin5(".element",{
+        param1:'Hello!'
     });
     
-    console.log('app is loaded');
-    //console.log(dep0.init('app depends on 0'));
+    plugin.method1({
+        param3:'World!',
+        onSuccess: function(){
+            console.log('Done!');
+        }
+    });
+    
+    console.log("plugin2: ");
+    console.log(plugin2);
+    var plugin = plugin2(".element",{
+        param1:'Hello!'
+    });
+    
+    plugin.method1({
+        onSuccess: function(){
+            console.log('Done!');
+        }
+    });
+    
+    // Or:
+    $(".element").plugin2().method1();
+
+    
 });
