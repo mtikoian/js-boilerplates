@@ -27,17 +27,21 @@ define([
     var PublicApi = function(element, options){
         
         // Remember the root assigned object.
-        var RootObject;
+        var Root;
         
         // Check if the provided element exists or not.
         if(element !== undefined && $(element).length !== 0) {
-            RootObject = $(element);
+            Root = $(element);
         } else {
-            RootObject = $(this); //'this' refers to global window.
+            Root = $(this); //'this' refers to global window.
         }
         
         // Do a deep copy of the options - http://goo.gl/gOSSrg
-        var RootOptions = $.extend(true, {}, defaults, options);
+        var Options = $.extend(true, {}, defaults, options);
+        
+        // Bind the element and options to the root.
+        Root.Element = Root;
+        Root.Options = Options;
         
         // define the public API.
         var Methods = {
@@ -45,10 +49,10 @@ define([
             method1: function(PublicOptions){
 
                 // Process the options.
-                var Options = $.extend(true, {}, RootOptions, PublicOptions);
+                var Options = $.extend(true, {}, Root.Options, PublicOptions);
                 console.log(Options);
 
-                RootObject.text(function() {
+                Root.text(function() {
                     return +$(this).text() + 1;
                 });
 
@@ -65,10 +69,10 @@ define([
             method2: function(PublicOptions){
 
                 // Process the options.
-                var Options = $.extend(true, {}, RootOptions, PublicOptions);
+                var Options = $.extend(true, {}, Root.Options, PublicOptions);
                 console.log(Options);
 
-                RootObject.text(function() {
+                Root.text(function() {
                     return +$(this).text() + 1;
                 });
 

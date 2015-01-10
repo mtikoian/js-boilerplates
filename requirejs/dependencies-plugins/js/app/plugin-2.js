@@ -18,7 +18,7 @@ define([
     $.fn[pluginName] = function(options) {
         
         // Remember the root assigned object.
-        var RootObject = this;
+        var Root = this;
         
         // Set private defaults.
         var defaults = {
@@ -28,7 +28,11 @@ define([
         };
         
         // Do a deep copy of the options - http://goo.gl/gOSSrg
-        var RootOptions = $.extend(true, {}, defaults, options);
+        var Options = $.extend(true, {}, defaults, options);
+        
+        // Bind the element and options to the root.
+        Root.Element = Root;
+        Root.Options = Options;
         
         // Private debug function.
         function log(msg) {
@@ -43,18 +47,18 @@ define([
                 // Remember the root (var PublicApi) object.
                 var PublicApi = this;
                 
-                console.log(PublicApi);
+                //console.log(PublicApi);
                 
-                console.log(RootOptions);
+                console.log(Root.Options);
                 
-                console.log(RootObject);
+                console.log(Root.Element);
                 
-                RootObject.text(function() {
+                Root.text(function() {
                     return +$(this).text() + 1;
                 });
                 
                 // Process the options.
-                var Options = $.extend(true, {}, RootOptions, PublicOptions);
+                var Options = $.extend(true, {}, Root.Options, PublicOptions);
                 console.log(Options);
                 
                 // Access the private method.
@@ -73,16 +77,16 @@ define([
                 
                 console.log(PublicApi);
                 
-                console.log(RootOptions);
+                console.log(Options);
                 
-                console.log(RootObject);
+                console.log(Root);
                 
-                RootObject.text(function() {
+                Root.text(function() {
                     return +$(this).text() + 1;
                 });
                 
                 // Process the options.
-                var Options = $.extend(true, {}, RootOptions, PublicOptions);
+                var Options = $.extend(true, {}, Options, PublicOptions);
                 console.log(Options);
                 
                 // Return the public root object for chaining.
@@ -94,7 +98,7 @@ define([
         return PublicApi;
     };
     
-    // Return the plugin as a function.
+    // Return the plugin in a function.
     return function(element, options){
         
         if(element !== undefined && $(element).length !== 0) {

@@ -21,7 +21,7 @@ define([
         // Reset constructor - http://goo.gl/EcWdiy
         constructor: Plugin,
  
-        someMethod: function(options) {
+        method1: function(options) {
             // Confirm a varible for the plugin's root itself.
             var base = this;
             
@@ -35,7 +35,7 @@ define([
             console.log(this.element);
             
             // Process the setting.
-            var properties = $.extend(true, {}, defaults, options );
+            var properties = $.extend(true, {}, base.options, options );
             console.log("processed settings: ");
             console.log(properties);
             
@@ -63,17 +63,15 @@ define([
     $.fn[pluginName].defaults = defaults;
     $.fn[pluginName].Plugin   = Plugin;
     
-    // Return the plugin.
-    return function(option){
+    // Return the plugin in a function.
+    return function(element, options){
         
-        // Default.
-        var target = this;
+        if(element !== undefined && $(element).length !== 0) {
+            return $(element)[pluginName](options).data('plugin_' + pluginName);
+        } else {
+            return $(this)[pluginName](options).data('plugin_' + pluginName); //'this' refers to global window.
+        }
         
-        // Overide.
-        if(option !== undefined && $(option).length !== 0) target = option;
-        
-        // Return it.
-        return $(target)[pluginName]().data('plugin_' + pluginName);
     };
     
 });

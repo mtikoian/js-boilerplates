@@ -9,19 +9,12 @@ define([
     'dep0',
     'dep1'
 ],function   ($, plugin1, plugin2, plugin3, plugin4, plugin5, dep0, dep1) {
-    
-    console.log("plugin5: ");
-    console.log(plugin5);
-    var plugin =  plugin5(".element",{
+
+
+    console.log("plugin1: ");
+    plugin1(".element",{
         param1:'Hello!'
-    });
-    
-    plugin.method1({
-        param3:'World!',
-        onSuccess: function(){
-            console.log('Done!');
-        }
-    });
+    }).method1();
     
     console.log("plugin2: ");
     console.log(plugin2);
@@ -35,8 +28,20 @@ define([
         }
     });
     
-    // Or:
+    console.log("or jquery method - plugin2: ");
     $(".element").plugin2().method1();
 
+    console.log("plugin5: ");
+    console.log(plugin5);
+    var plugin =  plugin5(".element",{
+        param1:'Hello!'
+    });
     
+    plugin.method1({
+        param3:'World!',
+        onSuccess: function(){
+            console.log('Done!');
+        }
+    });
+
 });
