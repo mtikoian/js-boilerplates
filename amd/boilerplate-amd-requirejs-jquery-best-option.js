@@ -63,57 +63,6 @@ define([
                 
                 // Return the public root object for chaining.
                 return this;
-            },
-            
-            method1 : function (PublicOptions) {
-               
-                // Remember the root (var PublicApi) object.
-                var Scope = this;
-                
-                Templates['template2'] = 'template2';
-                
-                console.log(Root.Options);
-                
-                console.log(Root.Element);
-                
-                Root.text(function() {
-                    return +$(this).text() + 1;
-                });
-                
-                // Process the options.
-                var Options = $.extend(true, {}, Root.Options, PublicOptions);
-                console.log(Options);
-                
-                // Access the private method.
-                log("copy_array");
-                
-                // A callback.
-                Options.onSuccess();
-                
-                // Return the public root object for chaining.
-                return this;
-            },
-            method2 : function (PublicOptions) {
-               
-                // Remember the root (var api) object.
-                var Scope = this;
-                
-                console.log(PublicApi);
-                
-                console.log(Options);
-                
-                console.log(Root);
-                
-                Root.text(function() {
-                    return +$(this).text() + 1;
-                });
-                
-                // Process the options.
-                var Options = $.extend(true, {}, Options, PublicOptions);
-                console.log(Options);
-                
-                // Return the public root object for chaining.
-                return this;
             }
         };
         

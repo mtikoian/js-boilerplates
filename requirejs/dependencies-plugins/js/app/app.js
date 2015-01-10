@@ -10,7 +10,6 @@ define([
     'dep1'
 ],function   ($, plugin1, plugin2, plugin3, plugin4, plugin5, dep0, dep1) {
 
-
     console.log("plugin1: ");
     plugin1(".element",{
         param1:'Hello!'
@@ -43,5 +42,8 @@ define([
             console.log('Done!');
         }
     });
+    
+    console.log("templates created: ");
+    console.log(window.Templates);
 
 });
