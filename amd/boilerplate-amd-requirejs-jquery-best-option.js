@@ -17,7 +17,7 @@ define([
     // Attach the plugin to jQuery namespace.
     $.fn[pluginName] = function(PublicOptions) {
         
-        // Remember the root assigned object.
+        // Remember the assigned object as Root.
         var Root = this;
         
         // Set private defaults.
@@ -73,9 +73,11 @@ define([
     // Return the plugin in a function.
     return function(element, options){
         
-        if(element !== undefined && $(element).length !== 0) {
+        if(element !== undefined && typeof element === "string" && $(element).length !== 0) {
             return $(element)[pluginName](options);
-        } else {
+        }else if(element !== undefined && element instanceof $ === true && element.length !== 0) {
+            return element[pluginName](options);
+        }else{
             return $(this)[pluginName](options); //'this' refers to global window.
         }
         

@@ -19,6 +19,7 @@ define([
         
         // Remember the root assigned object.
         var Root = this;
+        console.log(this);
         
         // Set private defaults.
         var Defaults = {
@@ -124,9 +125,11 @@ define([
     // Return the plugin in a function.
     return function(element, options){
         
-        if(element !== undefined && $(element).length !== 0) {
+        if(element !== undefined && typeof element === "string" && $(element).length !== 0) {
             return $(element)[pluginName](options);
-        } else {
+        } else if(element !== undefined && element instanceof $ === true && element.length !== 0) {
+            return element[pluginName](options);
+        }else {
             return $(this)[pluginName](options); //'this' refers to global window.
         }
         
