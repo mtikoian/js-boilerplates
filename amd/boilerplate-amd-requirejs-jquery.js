@@ -15,7 +15,7 @@ define([
     var pluginName = 'plugin2';
     
     // Attach the plugin to jQuery namespace.
-    $.fn[pluginName] = function(PublicOptions) {
+    $.fn[pluginName] = function(PublicOptions, ExtendedMethods) {
         
         // Remember the assigned object as Root.
         var Root = this;
@@ -66,19 +66,26 @@ define([
             }
         };
         
+        // Allow the plugin to extend the methods.
+        if(typeof ExtendedMethods === "object"){
+            for(var key in ExtendedMethods) {
+                PublicApi[key] = ExtendedMethods[key];
+            }
+        }
+        
         // Return the PublicApi object.
         return PublicApi;
     };
     
     // Return the plugin in a function.
-    return function(element, options){
+    return function(element, options, methods){
         
         if(element !== undefined && typeof element === "string" && $(element).length !== 0) {
-            return $(element)[pluginName](options);
-        }else if(element !== undefined && element instanceof $ === true && element.length !== 0) {
-            return element[pluginName](options);
-        }else{
-            return $(this)[pluginName](options); //'this' refers to global window.
+            return $(element)[pluginName](options, methods);
+        } else if(element !== undefined && element instanceof $ === true && element.length !== 0) {
+            return element[pluginName](options, methods);
+        }else {
+            return $(this)[pluginName](options, methods); //'this' refers to global window.
         }
         
     };
