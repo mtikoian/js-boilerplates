@@ -3,8 +3,8 @@ define([
     'jquery'
 ],function ($) {
     
-    // Define a functional object to hold the plugin.
-    function Plugin(element, options) {
+    // Define the object constructor.
+    var Plugin = function(element, options) {
         
         // Validate provided element.
         if(element !== undefined && typeof element === "string" && $(element).length !== 0) {
@@ -34,7 +34,7 @@ define([
         console.debug(msg);
     }
     
-    // Define the public api and its public methods.
+    // Define the public api and its public methods by extending the object.
     Plugin.prototype = {
         
         defaults : {
